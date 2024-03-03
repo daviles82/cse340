@@ -4,3 +4,364 @@
 *:after {
   box-sizing: border-box;
 }
+
+/* Small View-------------------header.ejs------------------- */
+
+#parent {
+  font-family: Roboto;
+}
+body {
+  min-width: 360px;
+}
+
+header {
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+header a {
+  color: black;
+  text-decoration: none;
+}
+
+.siteName {
+  float: left;
+  font-size: 30px;
+  font-family: Lora;
+}
+
+#tools {
+  float: right;
+}
+
+/* Small View-------------------header.ejs------------------- */
+
+/* Small View-----------------navigation.ejs----------------- */
+
+nav {
+  margin-top: 60px;
+  background-color: black;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+nav ul {
+  display: flex;
+}
+nav ul li {
+  padding: 5px;
+  list-style: none;
+  margin-right: auto;
+  color: white;
+  font-family: Roboto;
+}
+nav ul li:last-child {
+  margin-right: 22px;
+}
+
+/* Small View-----------------navigation.ejs----------------- */
+/* Small View-------------------layout.ejs------------------- */
+
+/*---heroCanvas---*/
+
+#heroDesc {
+  margin-left: 5px;
+  position: absolute;
+  margin-top: 60px;
+  top: 0;
+  z-index: 1;
+  background: rgb(255, 255, 255, 0.6);
+  color: rgb(33, 151, 219);
+  font-size: 20px;
+  padding: 0;
+}
+#heroCanvas h1 {
+  padding-left: 5px;
+  font-size: 27px;
+}
+#heroDesc li {
+  margin: 2px 0;
+  list-style: none;
+  padding-left: 10px;
+  font-family: Roboto;
+}
+#heroDesc li:first-child {
+  font-size: 20px;
+}
+
+#buttonImage {
+  width: 50%;
+  display: block;
+  margin-left: 10px;
+  margin-right: auto;
+}
+
+#heroImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
+  max-width: 75%;
+}
+#heroCanvas {
+  position: relative;
+  font-family: Roboto;
+
+}
+/*---heroCanvas---*/
+/*--reviewCanvas--*/
+
+#reviewCanvas li {
+  padding-bottom: 10px;
+  margin-left: -15px;
+  font-size: 20px;
+}
+#reviewCanvas h2 {
+  padding-left: 5px;
+  font-size: 27px;
+  margin-top: 30px;
+}
+
+/*--reviewCanvas--*/
+/*-upgradeOptions-*/
+
+#upgradeOptions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 5px;
+  padding-left: 10px;
+}
+.selections {
+  width: calc(50%);
+  padding-right: 6px;
+  padding-bottom: 25px;
+}
+.individuals img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.individuals {
+  background-color: rgb(33, 151, 219);
+  border: 1px solid;
+  height: 90px;
+}
+.selections a {
+  display: flex;
+  justify-content: center;
+  color: rgb(18, 91, 133);
+}
+h3 {
+  margin-left: 5px;
+  font-size: 23px;
+  margin-top: 30px;
+}
+
+/*-upgradeOptions-*/
+
+/* Small View-------------------layout.ejs------------------- */
+
+/* Small View-------------------footer.ejs------------------- */
+
+footer p {
+  font-size: 18px;
+  padding-left: 5px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+/* Small View-------------------footer.ejs------------------- */
+
+@media only screen and (min-width: 700px) {
+  /* -------------------header.ejs------------------- */
+  header {
+    padding: 10px;
+  }
+
+  header a {
+    color: black;
+    text-decoration: none;
+  }
+
+  .siteName {
+    float: left;
+    font-size: 40px;
+    font-family: Lora;
+  }
+
+  #tools {
+    float: right;
+  }
+
+  /* -------------------header.ejs------------------- */
+
+  /* -----------------navigation.ejs----------------- */
+
+  nav {
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: black;
+  }
+  nav ul {
+    display: flex;
+  }
+  nav ul li {
+    padding: 5px;
+    list-style: none;
+    margin-right: auto;
+    color: white;
+  }
+  nav ul li:last-child {
+    margin-right: 20px;
+  }
+
+  /* -----------------navigation.ejs----------------- */
+
+  /* -------------------layout.ejs------------------- */
+
+  body {
+    background-image: url("/images/site/small_check.jpg");
+    background-size: cover;
+    object-fit: contain;
+  }
+
+  /*---heroCanvas---*/
+  #wrapper {
+    border: 5px solid;
+    border-color: rgb(33, 151, 219);
+    background-color: white;
+    border-radius: 8px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #heroDesc {
+    margin-left: 20px;
+    position: absolute;
+    margin-top: 80px;
+    top: 0;
+    z-index: 1;
+    background: rgb(255, 255, 255, 0.6);
+    color: rgb(33, 151, 219);
+    font-size: 20px;
+    padding: 0;
+  }
+  #heroCanvas h1 {
+    padding-left: 10px;
+  }
+  #heroDesc li {
+    margin: 8px 0;
+    list-style: none;
+    padding-left: 45px;
+  }
+  #heroDesc li:first-child {
+    font-size: 30px;
+  }
+
+  #buttonImage {
+    width: 65%;
+    padding: -20px;
+    display: block;
+    margin-left: 20%;
+    margin-right: auto;
+  }
+
+  #heroImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 0;
+  }
+  #heroCanvas {
+    position: relative;
+  }
+  /*---heroCanvas---*/
+  /*--reviewCanvas--*/
+
+  #reviewCanvas li {
+    padding-bottom: 10px;
+    margin-left: -10px;
+    font-size: 20px;
+  }
+  #reviewCanvas h2 {
+    padding-left: 10px;
+    font-size: 23px;
+    margin-top: 30px;
+  }
+  #reviewCanvas {
+    width: calc(50%);
+  }
+
+  #parent {
+    display: flex;
+    flex-direction: row-reverse;
+    font-family: Roboto;
+  }
+
+  /*--reviewCanvas--*/
+  /*-upgradeOptions-*/
+  #uG {
+    width: calc(50%);
+  }
+
+  #upgradeOptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 5px;
+    padding-left: 10px;
+  }
+  .selections {
+    width: calc(50%);
+    padding-right: 6px;
+    padding-bottom: 25px;
+  }
+  .individuals img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .individuals {
+    background-color: rgb(33, 151, 219);
+    border: 1px solid;
+    height: 90px;
+  }
+  .selections a {
+    display: flex;
+    justify-content: center;
+    color: rgb(18, 91, 133);
+  }
+  h3 {
+    margin-left: 10px;
+    font-size: 23px;
+    margin-top: 30px;
+  }
+
+  /*-upgradeOptions-*/
+
+  /* -------------------layout.ejs------------------- */
+  /* -------------------footer.ejs------------------- */
+
+  footer p {
+    font-size: 20px;
+    padding-left: 10px;
+    color: black;
+    margin-bottom: 10px;
+  }
+
+  /* -------------------footer.ejs------------------- */
+}
