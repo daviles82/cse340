@@ -365,3 +365,15 @@ footer p {
 
   /* -------------------footer.ejs------------------- */
 }
+
+
+/* ----------------styling building process----------------- */
+
+#inv-display li, #inv-display a {
+  border: 2px solid;
+  color: blue;
+  z-index: 2;
+}
+#inv-display image {
+  z-index: 0;
+}
