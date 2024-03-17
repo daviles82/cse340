@@ -1,7 +1,7 @@
 const invModel = require('../models/inventory-model');
 const Util = {};
 
-/* ************************
+/* *************************
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
