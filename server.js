@@ -15,7 +15,9 @@ const inventoryRoute = require('./routes/inventoryRoute');
 const individualRoute = require('./routes/individualRoute');
 const utilities = require('./utilities/index');
 
+/* ***********************
 app.use(express.json());
+
 
 /* ***********************
  * View Engine and Templates
