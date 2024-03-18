@@ -2,7 +2,6 @@
 const express = require('express');
 const router = new express.Router();
 const indivCont = require('../controllers/indivController');
-console.log(indivCont);
 
 // Route to build individual classification view
 router.get(

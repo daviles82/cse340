@@ -1,4 +1,4 @@
-const invModel = require('../models/inventory-model'); // change this code
+const invModel = require('../models/inventory-model');
 const utilities = require('../utilities/');
 
 const indivCont = {};
@@ -15,12 +15,11 @@ indivCont.buildByClassificationId = async function (req, res, next) {
   };
   const foundObject = findObjectByInvId(data, individualId);
   const grid = await utilities.buildIndividualGrid(foundObject);
-  // console.log(foundObject); // change this code
+  // console.log(foundObject); // delete this code after production is done
   let nav = await utilities.getNav();
-  const className = data[0].classification_name; // change this code
-  // res.send(`Individual ID: ${individualId}`); // change this code
+  const specificVehicle = `${foundObject.inv_year} ${foundObject.inv_make} ${foundObject.inv_model}`
   res.render('./inventory/individual', {
-    title: className + ' vehicles', // change this code
+    title: specificVehicle ,
     nav,
     grid,
   });

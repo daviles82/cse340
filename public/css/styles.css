@@ -58,6 +58,9 @@ nav ul li {
 nav ul li:last-child {
   margin-right: 22px;
 }
+nav ul li a {
+  color: white;
+}
 
 /* Small View-----------------navigation.ejs----------------- */
 /* Small View-------------------layout.ejs------------------- */
@@ -106,7 +109,6 @@ nav ul li:last-child {
 #heroCanvas {
   position: relative;
   font-family: Roboto;
-
 }
 /*---heroCanvas---*/
 /*--reviewCanvas--*/
@@ -221,13 +223,16 @@ footer p {
   nav ul li:last-child {
     margin-right: 20px;
   }
+  nav ul li a {
+    color: white;
+  }
 
   /* -----------------navigation.ejs----------------- */
 
   /* -------------------layout.ejs------------------- */
 
   body {
-    background-image: url("/images/site/small_check.jpg");
+    background-image: url('/images/site/small_check.jpg');
     background-size: cover;
     object-fit: contain;
   }
@@ -238,10 +243,12 @@ footer p {
     border-color: rgb(33, 151, 219);
     background-color: white;
     border-radius: 8px;
-    margin-left: 90px;
-    margin-right: 90px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    margin-bottom: auto;
+    max-width: 1100px;
   }
 
   #heroDesc {
@@ -364,16 +371,234 @@ footer p {
   }
 
   /* -------------------footer.ejs------------------- */
+
+  /* ----------------styling building process----------------- */
+
+  #inv-display a{
+    color: blue;
+  }
+
+  #inv-display li{
+    border: 2px solid;
+    border-color: rgb(218, 215, 215);
+    border-radius: 12px;
+  }
+  #inv-display {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 600px;
+    justify-content: space-between;
+  }
+  #inv-display li {
+    flex: 1 0 calc(33.33% - 20px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    max-width: 260px;
+    max-height: 325px;
+    justify-content: center;
+    list-style-type: none;
+  }
+  #inv-display li a{
+    height: 61%;
+    text-decoration: underline;
+    text-decoration-color: black;
+  }
+  #inv-display {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  #inv-display li div {
+    height: 39%;
+    text-align: center;
+    font-size: 13px;
+  }
+  #inv-display hr{
+    margin: auto;
+    height: 4px;
+    background-color: black;
+  }
+  #inv-display li a img {
+    border-radius: 12px;
+    object-fit: cover;
+    width: 100%;
+  }
+  /* ----------------styling building process----------------- */
+
+  /* ----------------styling individual display--------------- */
+
+  #individual-display h2 a {
+    color: black;
+    text-decoration: none;
+  }
+  #individual-display h2 {
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: Roboto;
+  }
+
+  #individual-display h4,
+  #individual-display p,
+  #individual-display h5,
+  #individual-display {
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: Roboto;
+    font-weight: normal;
+  }
+
+  #individual-title {
+    padding-left: 10px;
+  }
+  #individual-display h3 {
+    font-size: 20px;
+    font-family: Roboto;
+    background-color: rgb(250, 245, 245);
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  #individual-display h4 {
+    background-color: rgb(250, 245, 245);
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .descText {
+    font-weight: bold;
+  }
+
+  #individual-display {
+    display: flex;
+    width: 100%;
+    height: 600px;
+  }
+
+  #individual-display a,
+  .itemDetails {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    height: 100%;
+  }
+  #individual-display img {
+    margin-top: 40px;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ----------------styling individual display--------------- */
 }
 
+/* --------------small styling individual display------------- */
 
-/* ----------------styling building process----------------- */
+#individual-display h2 a {
+  color: black;
+  text-decoration: none;
+}
+#individual-display h2 {
+  padding-left: 10px;
+  font-size: 20px;
+  font-family: Roboto;
+}
 
-#inv-display li, #inv-display a {
-  border: 2px solid;
+#individual-display h4,
+#individual-display p,
+#individual-display h5,
+#individual-display {
+  padding-left: 10px;
+  font-size: 20px;
+  font-family: Roboto;
+  font-weight: normal;
+}
+
+#individual-title {
+  padding-left: 10px;
+}
+#individual-display h3 {
+  font-size: 20px;
+  font-family: Roboto;
+  background-color: rgb(250, 245, 245);
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+#individual-display h4 {
+  background-color: rgb(250, 245, 245);
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.descText {
+  font-weight: bold;
+}
+
+#individual-display {
+  width: 100%;
+}
+
+#individual-display a,
+.itemDetails {
+  height: 100%;
+}
+
+#individual-display img {
+  margin-top: 40px;
+  width: 100%;
+  height: auto;
+  padding-right: 10px;
+}
+/* --------------small styling individual display------------- */
+
+/* --------------small styling inventory display------------- */
+
+
+#inv-display a{
   color: blue;
-  z-index: 2;
 }
-#inv-display image {
-  z-index: 0;
+
+#inv-display li{
+  border: 2px solid;
+  border-color: rgb(218, 215, 215);
+}
+#inv-display {
+  width: 100%;
+}
+#inv-display li {
+  box-sizing: border-box;
+  margin: 10px;
+}
+#inv-display li a{
+  height: 61%;
+  text-decoration: underline;
+  text-decoration-color: black;
+}
+#inv-display {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#inv-display li div {
+  height: 39%;
+  text-align: center;
+  font-size: 13px;
+}
+#inv-display hr{
+  margin: auto;
+  height: 4px;
+  background-color: black;
+}
+#inv-display li a img {
+  object-fit: cover;
+  width: 100%;
+}
+
+/* -----------error handling page-------------- */
+#errorCode, #errorMessage, #intentionalError {
+  padding-left: 10px;
+  text-align: center;
+  padding-bottom: 10px;
 }

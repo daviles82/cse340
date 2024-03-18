@@ -85,13 +85,13 @@ Util.buildClassificationGrid = async function (data) {
  * Build the individual view HTML
  * ************************************ */
 Util.buildIndividualGrid = async function (data) {
+  let vehAmount = [data];
   let vehicle = data;
   let grid;
-  let link = './' + vehicle.inv_id;
-  console.log(link);
-  if (vehicle === data) {
-    grid = '<ul id="inv-display">';
-    grid += '<li>';
+  if (vehAmount.length === 1) {
+    let link = './' + vehicle.inv_id;
+    grid = '<div id="individual-display">';
+    // grid += '<li>';
     grid +=
       '<a href="' +
       link +
@@ -100,14 +100,13 @@ Util.buildIndividualGrid = async function (data) {
       ' ' +
       vehicle.inv_model +
       ' details"><img src="' +
-      vehicle.inv_thumbnail +
+      vehicle.inv_image +
       '" alt="Image of ' +
       vehicle.inv_make +
       ' ' +
       vehicle.inv_model +
       ' on CSE Motors" /></a>';
-    grid += '<div class="namePrice">';
-    grid += '<hr />';
+    grid += '<div class="itemDetails">';
     grid += '<h2>';
     grid +=
       '<a href="' +
@@ -120,24 +119,26 @@ Util.buildIndividualGrid = async function (data) {
       vehicle.inv_make +
       ' ' +
       vehicle.inv_model +
-      '</a>';
+      ' Details</a>';
     grid += '</h2>';
     grid +=
-      '<span>$' +
+      '<h3><span class="descText">Price:</span> $' +
       new Intl.NumberFormat('en-US').format(vehicle.inv_price) +
-      '</span>';
-    grid += '<span>$' + vehicle.inv_year + '</span>';
-    grid += '<span>$' + vehicle.inv_miles + '</span>';
-    grid += '<span>$' + vehicle.inv_color + '</span>';
-    grid += '<p>$' + vehicle.inv_description + '</p>';
+      '</h3>';
+    grid +=
+      '<p><span class="descText">Description: </span>' +
+      vehicle.inv_description +
+      '</p>';
+    grid +=
+      '<h4><span class="descText">Color: </span>' + vehicle.inv_color + '</h4>';
+    grid +=
+      '<h5><span class="descText">Miles: </span>' + vehicle.inv_miles + '</h5>';
     grid += '</div>';
-    grid += '</li>';
-    // })
-    grid += '</ul>';
+    // grid += '</li>';
+    grid += '</div>';
   } else {
     grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>';
   }
-  console.log(grid);
   return grid;
 };
 
