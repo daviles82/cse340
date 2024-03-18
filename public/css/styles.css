@@ -595,6 +595,9 @@ footer p {
   object-fit: cover;
   width: 100%;
 }
+#classificationTitle{
+  padding-left: 10px;
+}
 
 /* -----------error handling page-------------- */
 #errorCode, #errorMessage, #intentionalError {
