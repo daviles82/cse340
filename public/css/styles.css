@@ -374,11 +374,11 @@ footer p {
 
   /* ----------------styling building process----------------- */
 
-  #inv-display a{
+  #inv-display a {
     color: blue;
   }
 
-  #inv-display li{
+  #inv-display li {
     border: 2px solid;
     border-color: rgb(218, 215, 215);
     border-radius: 12px;
@@ -401,7 +401,7 @@ footer p {
     justify-content: center;
     list-style-type: none;
   }
-  #inv-display li a{
+  #inv-display li a {
     height: 61%;
     text-decoration: underline;
     text-decoration-color: black;
@@ -418,7 +418,7 @@ footer p {
     text-align: center;
     font-size: 13px;
   }
-  #inv-display hr{
+  #inv-display hr {
     margin: auto;
     height: 4px;
     background-color: black;
@@ -555,12 +555,11 @@ footer p {
 
 /* --------------small styling inventory display------------- */
 
-
-#inv-display a{
+#inv-display a {
   color: blue;
 }
 
-#inv-display li{
+#inv-display li {
   border: 2px solid;
   border-color: rgb(218, 215, 215);
 }
@@ -571,7 +570,7 @@ footer p {
   box-sizing: border-box;
   margin: 10px;
 }
-#inv-display li a{
+#inv-display li a {
   height: 61%;
   text-decoration: underline;
   text-decoration-color: black;
@@ -586,7 +585,7 @@ footer p {
   text-align: center;
   font-size: 13px;
 }
-#inv-display hr{
+#inv-display hr {
   margin: auto;
   height: 4px;
   background-color: black;
@@ -595,13 +594,109 @@ footer p {
   object-fit: cover;
   width: 100%;
 }
-#classificationTitle{
+#classificationTitle {
   padding-left: 10px;
 }
 
 /* -----------error handling page-------------- */
-#errorCode, #errorMessage, #intentionalError {
+#errorCode,
+#errorMessage,
+#intentionalError {
   padding-left: 10px;
   text-align: center;
   padding-bottom: 10px;
 }
+/* -----------error handling page-------------- */
+
+/* ----------------login page------------------ */
+
+#login {
+  border: 3px solid;
+  border-color: #989da2;
+  border-radius: 4px;
+  background-color: #334559;
+  box-shadow: 0px 0px 2px 2px rgba(62, 57, 57, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: max-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login label,
+#login span,
+#login span a {
+  color: rgb(241, 239, 239);
+}
+
+#email,
+#password {
+  border-radius: 4px;
+  width: 280px;
+  border: none;
+  outline: none;
+  margin: 5px;
+}
+
+#button {
+  padding-top: 5px;
+  font-family: Noto;
+  font-size: 12px;
+  margin-top: 3px;
+  border-radius: 20px;
+  width: 70px;
+  border: none;
+  outline: none;
+  background-color: rgb(241, 239, 239);
+}
+
+#login div label {
+  margin-left: 6px;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#login span {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ----------------login page------------------ */
+
+/* ---------------register page---------------- */
+
+#register {
+  display: block;
+}
+
+#pswdBtn {
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 2px;
+  margin-top: 1em;
+  font-size: small;
+  width: 7em;
+  text-align: center;
+}
+
+/* ---------------register page---------------- */
+
+/* ---------register page valid/invalid--------- */
+
+input:required:invalid,
+input:focus:invalid {
+  background-color: pink;
+  border: 2px solid red;
+}
+
+input:required:valid {
+  background-color: blue;
+  border: 2px solid blue;
+}
+
+/* ---------register page valid/invalid--------- */

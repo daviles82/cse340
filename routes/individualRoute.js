@@ -5,7 +5,7 @@ const indivCont = require('../controllers/indivController');
 
 // Route to build individual classification view
 router.get(
-  '/inv/type/:classificationId/detail/:individualId/',
+  '/inv/type/:classificationId/detail/:individualId',
   indivCont.buildByClassificationId
 );
 

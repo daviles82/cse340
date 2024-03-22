@@ -1,0 +1,21 @@
+<!-- HTML, title implementation using title value from controller -->
+<% if (title) { %>
+  <h1 id="loginTitle"><%= title %></h1>
+  <% } else { res.redirect('/') } %>
+  <%- messages() %>
+<form id="login" action="">
+  <div>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="account_email" value="" required>
+  </div>
+  <div>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="account_password" value="" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+    <p>
+      Passwords must be minimum of 12 characters and include 1 capital letter,
+      1 number and 1 special character.
+    </p>
+  </div>
+  <input id="button" type="submit" value="LOGIN"><br>
+  <span>No account? <a href="/account/register"</a>Sign-up</a> </span>
+</form>
