@@ -20,9 +20,9 @@
       <label for="account_firstname">First name</label><br />
       <input
         type="text"
-        id="register_firstname"
+        id="accountFirstname"
         name="account_firstname"
-        value=""
+        value="<%= locals.account_firstname %>"
         required
       />
     </div>
@@ -30,9 +30,9 @@
       <label for="account_lastname">Last name</label><br />
       <input
         type="text"
-        id="register_lastname"
+        id="accountLastname"
         name="account_lastname"
-        value=""
+        value="<%= locals.account_lastname %>"
         required
       />
     </div>
@@ -40,9 +40,9 @@
       <label for="account_email">Email address</label><br />
       <input
         type="email"
-        id="register_email"
+        id="accountEmail"
         name="account_email"
-        value=""
+        value="<%= locals.account_email %>"
         required
         placeholder="Enter a valid email address"
       />
@@ -51,7 +51,7 @@
       <label for="account_password">Password:</label><br />
       <input
         type="password"
-        id="register_password"
+        id="accountPassword"
         name="account_password"
         value=""
         required

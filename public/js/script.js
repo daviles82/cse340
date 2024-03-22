@@ -1,6 +1,6 @@
 const pswdBtn = document.querySelector("#pswdBtn");
 pswdBtn.addEventListener("click", function() {
-  const pswdInput = document.getElementById("register_password");
+  const pswdInput = document.getElementById("accountPassword");
   const type = pswdInput.getAttribute("type");
   if (type == "password") {
     pswdInput.setAttribute("type", "text");
