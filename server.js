@@ -62,6 +62,8 @@ app.use('/', utilities.handleErrors(inventoryRoute));
 app.use('/', utilities.handleErrors(individualRoute));
 // Account routes - Unit 4, activity
 app.use('/account', require('./routes/accountRoute'));
+// Add Inventory routes - Unit 4, activity
+app.use('/inv', require('./routes/vehicleManRoute'));
 // File Not Found Route - must be last route in list
 app.use('/error', (req, res, next) => {
   next({ status: 500, message: 'Oops, I did it again!' });
@@ -85,7 +87,7 @@ app.use(async (err, req, res, next) => {
   } else if (err.status == 500) {
     message = err.message;
   } else {
-    message = 'Oh no! There was a crash. Maybe try a different route?';
+    message = 'Oh nope! There was a crash. Maybe try a different route?';
   }
   res.render('errors/error', {
     title: err.status || 'Server Error',
