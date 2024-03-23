@@ -1,9 +1,7 @@
 <!-- HTML, title implementation using title value from controller -->
 <% if (title) { %>
 <h1 id="managementTitle"><%= title %></h1>
-<% } else { res.redirect('/') } %> 
-
-<%- messages() %>
+<% } else { res.redirect('/') } %> <%- messages() %>
 
 <div>
   <a type="text" id="classification_name" href="inv/add"
