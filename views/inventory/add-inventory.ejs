@@ -4,5 +4,52 @@
   <% } else { res.redirect('/') } %>
   
   <%- messages() %>
-  
-<div>Add New Vehicle Test Page</div>
+
+<form id="addVehicle" action="">
+  <div>ALL FIELDS ARE REQUIRED.</div>
+  <fieldset> 
+    <div>
+      <label for="">Classification</label><br>
+      <select id="classification_name" name="classification_name" required>
+        <option value=""></option>
+      </select>
+    </div>
+    <div>
+      <label for="inv_make">Make</label><br>
+      <input type="text" id="inv_make" name="inv_make" title="" required>
+    </div>
+    <div>
+      <label for="inv_model">Model</label><br>
+      <input type="text" id="inv_model" name="inv_model" title="" required>
+    </div>
+    <div>
+      <label for="inv_description">Description:</label><br>
+      <textarea id="description" name="description" rows="4" cols="50"></textarea><br>
+    </div>
+    <div>
+      <label for="inv_image">Image Path</label><br>
+      <input type="text" id="inv_image" name="inv_image" placeholder="/images/vehicles/no-image.png"><br>
+    </div>
+    <div>
+      <label for="inv_thumbnail">Thumbnail Path</label><br>
+      <input type="text" id="inv_thumbnail" name="inv_thumbnail" placeholder="/images/vehicles/no-image.png"><br>
+    </div>
+    <div>
+      <label for="inv_price">Price</label><br>
+      <input type="text" id="inv_price" name="inv_price" title="" required pattern="\d{1,11}">
+    </div>
+    <div>
+      <label for="inv_year">Year</label><br>
+      <input type="text" id="inv_year" name="inv_year" title="" required pattern="\d{4}">
+    </div>
+    <div>
+      <label for="inv_miles">Miles</label><br>
+      <input type="text" id="inv_miles" name="inv_miles" title="" required pattern="\d{1,9}">
+    </div>
+    <div>
+      <label for="inv_color">Color</label><br>
+      <input type="text" id="inv_color" name="inv_color" title="" required>
+    </div>
+    <button id="add_button" type="submit" value="Add Vehicle">Add Vehicle<br/>
+  </fieldset>
+</form>

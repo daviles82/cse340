@@ -11,8 +11,8 @@ const invManCont = require('../controllers/managementController');
 router.get('/', utilities.handleErrors(invManCont.vehicleManagement));
 
 
-router.get('/inv/add', utilities.handleErrors(invManCont.addClassification));
+router.get('/add', utilities.handleErrors(invManCont.addClassification));
 
-router.get('/inv/vehicle', utilities.handleErrors(invManCont.addInventory));
+router.get('/vehicle', utilities.handleErrors(invManCont.addInventory));
 
 module.exports = router
