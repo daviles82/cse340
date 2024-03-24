@@ -4,23 +4,21 @@
   <% } else { res.redirect('/') } %>
   
   <%- messages() %>
-
-<form id="addVehicle" action="">
-  <div>ALL FIELDS ARE REQUIRED.</div>
-  <fieldset> 
-    <div>
-      <label for="">Classification</label><br>
-      <select id="classification_name" name="classification_name" required>
-        <option value=""></option>
-      </select>
+  
+  <form id="addVehicle" action="add-inventory" method="post">
+    <div>ALL FIELDS ARE REQUIRED.</div>
+    <fieldset> 
+      <div>
+        <!-- <label for="">Classification</label><br> -->
+        <%- dropDown %>
     </div>
     <div>
       <label for="inv_make">Make</label><br>
-      <input type="text" id="inv_make" name="inv_make" title="" required>
+      <input type="text" id="inv_make" class="string" name="inv_make" title="" required>
     </div>
     <div>
       <label for="inv_model">Model</label><br>
-      <input type="text" id="inv_model" name="inv_model" title="" required>
+      <input type="text" id="inv_model" class="string" name="inv_model" title="" required>
     </div>
     <div>
       <label for="inv_description">Description:</label><br>
@@ -28,11 +26,11 @@
     </div>
     <div>
       <label for="inv_image">Image Path</label><br>
-      <input type="text" id="inv_image" name="inv_image" placeholder="/images/vehicles/no-image.png"><br>
+      <input type="text" id="inv_image" class="string" name="inv_image" placeholder="/images/vehicles/no-image.png"><br>
     </div>
     <div>
       <label for="inv_thumbnail">Thumbnail Path</label><br>
-      <input type="text" id="inv_thumbnail" name="inv_thumbnail" placeholder="/images/vehicles/no-image.png"><br>
+      <input type="text" id="inv_thumbnail" class="string" name="inv_thumbnail" placeholder="/images/vehicles/no-image.png"><br>
     </div>
     <div>
       <label for="inv_price">Price</label><br>
@@ -48,8 +46,11 @@
     </div>
     <div>
       <label for="inv_color">Color</label><br>
-      <input type="text" id="inv_color" name="inv_color" title="" required>
+      <input type="text" id="inv_color" class="string" name="inv_color" title="" required>
     </div>
     <button id="add_button" type="submit" value="Add Vehicle">Add Vehicle<br/>
   </fieldset>
 </form>
+<script src="/js/script.js"></script>
+
+

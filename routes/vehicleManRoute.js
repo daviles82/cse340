@@ -12,20 +12,35 @@ router.get('/', utilities.handleErrors(invManCont.vehicleManagement));
 
 /* ***********************************
  * Deliver Add New Classification View
- * Unit 4, 
+ * Unit 4,
  * ******************************** */
-router.get('/add-classification', utilities.handleErrors(invManCont.addClassification));
+router.get(
+  '/add-classification',
+  utilities.handleErrors(invManCont.addClassification)
+);
 
 /* ***********************************
  * Deliver Add New Vehicle View
- * Unit 4, 
+ * Unit 4,
  * ******************************** */
 router.get('/add-inventory', utilities.handleErrors(invManCont.addInventory));
 
 /* ***********************************
  * Process Add New Classification
- * Unit 4, 
+ * Unit 4,
  * ******************************** */
-router.post('/add-classification', utilities.handleErrors(invManCont.addClassificationToFile));
+router.post(
+  '/add-classification',
+  utilities.handleErrors(invManCont.addClassificationToFile)
+);
 
-module.exports = router
+/* ***********************************
+ * Process Add New Inventory
+ * Unit 4,
+ * ******************************** */
+router.post(
+  '/add-inventory',
+  utilities.handleErrors(invManCont.addInventoryToFile)
+);
+
+module.exports = router;
