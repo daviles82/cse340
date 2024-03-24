@@ -1,0 +1,6 @@
+
+// * This inserts a classification
+INSERT INTO public.classification (classification_name) VALUES ('newcar') RETURNING *
+
+// * This deletes a classification
+DELETE FROM public.classification WHERE classification_id = 7 RETURNING *

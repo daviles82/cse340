@@ -1,4 +1,5 @@
 const utilities = require('../utilities');
+const inventoryModel = require('../models/inventory-model');
 
 /* ****************************************
  * Deliver the Vehicle Mangagement page
@@ -39,4 +40,38 @@ async function addInventory(req, res, next) {
   });
 }
 
-module.exports = { vehicleManagement, addClassification, addInventory };
+/* ****************************************
+ *  Process Classification
+ * *************************************** */
+async function addClassificationToFile(req, res) {
+  let nav = await utilities.getNav();
+  const { classification_name } = req.body;
+
+  const claResult = await inventoryModel.addClassificationToFile(
+    classification_name
+  );
+
+  if (claResult) {
+    req.flash(
+      'notice',
+      `Congratulations, you added a classification ${classification_name}. Please add a new vehicle.`
+    );
+    res.status(201).render('./inventory/add-inventory', {
+      title: 'Add New Vehicle',
+      nav,
+    });
+  } else {
+    req.flash('notice', 'Sorry, adding the classification failed.');
+    res.status(501).render('inventory/add-classification', {
+      title: 'Add New Classification',
+      nav,
+    });
+  }
+}
+
+module.exports = {
+  vehicleManagement,
+  addClassification,
+  addInventory,
+  addClassificationToFile,
+};
