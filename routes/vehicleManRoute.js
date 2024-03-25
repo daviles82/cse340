@@ -3,6 +3,7 @@ const express = require('express');
 const router = new express.Router();
 const utilities = require('../utilities');
 const invManCont = require('../controllers/managementController');
+const inventoryValidate = require('../utilities/inventory-validation');
 
 /* ***********************************
  * Deliver Vehicle Management View
@@ -31,6 +32,8 @@ router.get('/add-inventory', utilities.handleErrors(invManCont.addInventory));
  * ******************************** */
 router.post(
   '/add-classification',
+  inventoryValidate.classificationRules(),
+  inventoryValidate.checkClassificationData,
   utilities.handleErrors(invManCont.addClassificationToFile)
 );
 
@@ -40,6 +43,8 @@ router.post(
  * ******************************** */
 router.post(
   '/add-inventory',
+  inventoryValidate.inventoryRules(),
+  inventoryValidate.checkInventoryData,
   utilities.handleErrors(invManCont.addInventoryToFile)
 );
 

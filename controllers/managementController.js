@@ -49,11 +49,9 @@ async function addClassificationToFile(req, res) {
   let nav = await utilities.getNav();
   let dropDown = await utilities.buildClassificationList();
   const { classification_name } = req.body;
-
   const claResult = await inventoryModel.addClassificationToFile(
     classification_name
   );
-
   if (claResult) {
     req.flash(
       'notice',
