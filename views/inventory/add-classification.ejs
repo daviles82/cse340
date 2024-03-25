@@ -14,15 +14,16 @@
   <% } %>
   
   <form id="addClassification" action="add-classification" method="post">
-  <div>FIELD IS REQUIRED</div>
-    <fieldset> 
+    <div>FIELD IS REQUIRED</div>
+    <br>
+    <fieldset>
+  <p>
+    NAME MUST BE ALPHABET CHARACTERS ONLY, WITH A RANGE OF 1-9 CHARACTERS.
+  </p>
   <div>
     <label for="">Classification Name</label><br>
-    <p>
-     NAME MUST BE ALPHABET CHARACTERS ONLY, WITH A RANGE OF 1-9 CHARACTERS.
-    </p>
     <input type="text" id="classification_name" name="classification_name" title="1-9 characters, no spaces, and letters only." required pattern="^[a-zA-Z]{1,9}$" value="<%= locals.classification_name %>">
   </div>
   <button id="clasificationButton" type="submit" value="Add Classification">Add Classification<br>
-</fieldset>
-</form>
+  </fieldset>
+  </form>

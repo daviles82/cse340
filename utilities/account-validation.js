@@ -109,7 +109,7 @@ validate.loginRules = () => {
       );
       if (!passwordCorrect) {
         throw new Error(
-          'Password is incorrect. Please click on "SHOW PASSWORD" for accuracy.'
+          'Password is incorrect.'
         );
       } else {
         console.log('Success, password is correct!');

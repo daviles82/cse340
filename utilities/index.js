@@ -157,7 +157,7 @@ Util.buildClassificationList = async function (classification_id = null) {
     }
     classificationList += ">" + row.classification_name + "</option>"
   })
-  classificationList += "</select>"
+  classificationList += "required value='<%= locals.inv_description %>'</select>"
   return classificationList
 }
 

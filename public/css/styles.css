@@ -608,9 +608,20 @@ footer p {
 }
 /* -----------error handling page-------------- */
 
-/* ----------------login page------------------ */
+/* ----------------login/register page------------------ */
+#addClassification{
+  min-height: 300px;
+}
+#addClassification button{
+  margin-left: 5px;
+}
 
-#login {
+#loginTitle, #registerTitle{
+  padding-left: 10px;
+}
+
+
+#loginForm, #register, #addClassification, #addVehicle {
   border: 3px solid;
   border-color: #989da2;
   border-radius: 4px;
@@ -629,14 +640,14 @@ footer p {
   margin-right: auto;
 }
 
-#login label,
-#login span,
-#login span a {
+#loginForm label,
+#loginForm span,
+#loginForm span a, #loginForm p, #register label, #register span, #register p, #pswdBtn, #addClassification, #addVehicle {
   color: rgb(241, 239, 239);
 }
 
 #email,
-#password {
+#password , #register input, #classification_name, #addNewVehicle, #addVehicle input {
   border-radius: 4px;
   width: 280px;
   border: none;
@@ -644,41 +655,76 @@ footer p {
   margin: 5px;
 }
 
-#button {
+#button, #register_button, #classificationButton, #add_button{
   padding-top: 5px;
   font-family: Noto;
   font-size: 12px;
   margin-top: 3px;
-  border-radius: 20px;
+  border-radius: 16px;
   width: 70px;
   border: none;
   outline: none;
   background-color: rgb(241, 239, 239);
 }
 
-#login div label {
+#loginForm div label, #register div label, #addClassification div label, #addVehicle div label {
   margin-left: 6px;
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#login span {
-  font-family: Arial, Helvetica, sans-serif;
+.divider {
+  padding-top: 10px;
 }
 
-/* ----------------login page------------------ */
+#loginForm span, #register p, #addClassification p{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+#add_button{
+  width: 100px;
+}
+
+/* ----------------login/register page------------------ */
+
+/* ---------------vehicle managment pages--------------- */
+
+#managementTitle, #classification_name, #addNewVehicle{
+  padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------vehicle managment pages--------------- */
+
 
 /* ---------------register page---------------- */
-
-#register {
-  display: block;
-}
 
 #pswdBtn {
   border: 2px solid #000;
   border-radius: 5px;
   padding: 2px;
-  margin-top: 1em;
+  margin-bottom: 1em;
   font-size: small;
   width: 7em;
   text-align: center;
@@ -686,7 +732,7 @@ footer p {
 
 /* ---------------register page---------------- */
 
-/* ---------register page valid/invalid--------- */
+/* --------- valid/invalid--------- */
 
 input:required:invalid,
 input:focus:invalid {
@@ -699,4 +745,4 @@ input:required:valid {
   border: 2px solid blue;
 }
 
-/* ---------register page valid/invalid--------- */
+/* --------- valid/invalid--------- */
