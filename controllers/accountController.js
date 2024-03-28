@@ -5,7 +5,9 @@
 // Needed Resources
 const utilities = require('../utilities');
 const accountModel = require('../models/account-model');
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* ****************************************
  * Deliver login view
@@ -15,6 +17,20 @@ async function buildLogin(req, res, next) {
   let nav = await utilities.getNav();
   res.render('./account/login', {
     title: 'Login',
+    nav,
+    errors: null,
+  });
+}
+
+/* ****************************************
+ * Deliver accounts view
+ * Unit 5, 
+ * *************************************** */
+async function accountView(req, res, next) {
+  let nav = await utilities.getNav();
+  console.log(`Account Controller line 31 ${req}`);
+  res.render('./account/loggedAccount', {
+    title: 'Account',
     nav,
     errors: null,
   });
@@ -84,4 +100,40 @@ async function registerAccount(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount };
+/* ****************************************
+ *  Process login request
+ * ************************************ */
+// ATTN%
+async function accountLogin(req, res) {
+ let nav = await utilities.getNav()
+ const { account_email, account_password } = req.body
+ const accountData = await accountModel.getAccountByEmail(account_email)
+ console.log(`Account Controller 1 accountLogin ${accountData}`);
+ if (!accountData) {
+  req.flash("notice", "Please check your credentials and try again.")
+  res.status(400).render("account/login", {
+   title: "Login",
+   nav,
+   errors: null,
+   account_email,
+  })
+ return
+ }
+ try {
+  if (await bcrypt.compare(account_password, accountData.account_password)) {
+  delete accountData.account_password
+  const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 })
+  if(process.env.NODE_ENV === 'development') {
+    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+    } else {
+      res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+    }
+    // Check this route
+  return res.redirect("/account")
+  }
+ } catch (error) {
+  return new Error('Access Forbidden')
+ }
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, accountView };

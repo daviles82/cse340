@@ -103,18 +103,18 @@ validate.loginRules = () => {
         }
       }),
 
-    body('account_password').custom(async (account_password) => {
-      const passwordCorrect = await accountModel.checkPassword(
-        account_password
-      );
-      if (!passwordCorrect) {
-        throw new Error(
-          'Password is incorrect.'
-        );
-      } else {
-        console.log('Success, password is correct!');
-      }
-    }),
+    // body('account_password').custom(async (account_password) => {
+    //   const passwordCorrect = await accountModel.checkPassword(
+    //     account_password
+    //   );
+    //   if (!passwordCorrect) {
+    //     throw new Error(
+    //       'Password is incorrect.'
+    //     );
+    //   } else {
+    //     console.log('Success, password is correct!');
+    //   }
+    // }),
   ];
 };
 
