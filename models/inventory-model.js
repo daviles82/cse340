@@ -27,6 +27,21 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+/* ***************************
+ *  Get inventory item by inv_id
+ * ************************** */
+async function getInventoryById(inv_id) {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory WHERE inv_id = $1`,[inv_id]
+      );
+      console.log(`inventory-modal line 38 ${data.rows[0]}`);
+    return data.rows[0]
+  } catch (error) {
+    console.error('getinventorybyid error ' + error);
+  }
+}
+
 /* *****************************
  *   Add new classification
  * *************************** */
@@ -89,6 +104,7 @@ async function checkExistingClassification(classification_name) {
 }
 
 module.exports = {
+  getInventoryById,
   getClassifications,
   getInventoryByClassificationId,
   addClassificationToFile,

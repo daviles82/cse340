@@ -22,4 +22,10 @@ router.get('/inv', utilities.handleErrors(invCont.vehicleManagement));
  * ******************************** */
 router.get("/inv/getInventory/:classification_id", utilities.handleErrors(invCont.getInventoryJSON))
 
+/* ***********************************
+ * Get edit form to modify
+ * Unit 5, Select inv item to edit
+ * ******************************** */
+router.get("/inv/edit/:inv_id", utilities.handleErrors(invCont.editInvItemView))
+
 module.exports = router;
