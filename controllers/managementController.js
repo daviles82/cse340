@@ -89,7 +89,7 @@ async function addInventoryToFile(req, res) {
     classification_id,
     inv_make,
     inv_model,
-    'inv_description',
+    inv_description,
     inv_image,
     inv_thumbnail,
     inv_price,

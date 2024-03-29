@@ -3,6 +3,8 @@ const express = require('express');
 const router = new express.Router();
 const invCont = require('../controllers/invController');
 const utilities = require('../utilities/');
+const inventoryValidate = require('../utilities/inventory-validation');
+
 
 
 
@@ -27,5 +29,11 @@ router.get("/inv/getInventory/:classification_id", utilities.handleErrors(invCon
  * Unit 5, Select inv item to edit
  * ******************************** */
 router.get("/inv/edit/:inv_id", utilities.handleErrors(invCont.editInvItemView))
+
+router.post("/inv/update/", 
+inventoryValidate.inventoryRules(),
+inventoryValidate.checkUpdateData,
+utilities.handleErrors(invCont.updateInventory))
+
 
 module.exports = router;

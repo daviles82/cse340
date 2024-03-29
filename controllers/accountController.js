@@ -28,7 +28,6 @@ async function buildLogin(req, res, next) {
  * *************************************** */
 async function accountView(req, res, next) {
   let nav = await utilities.getNav();
-  console.log(`Account Controller line 31 ${req}`);
   res.render('./account/loggedAccount', {
     title: 'Account',
     nav,
@@ -108,7 +107,6 @@ async function accountLogin(req, res) {
  let nav = await utilities.getNav()
  const { account_email, account_password } = req.body
  const accountData = await accountModel.getAccountByEmail(account_email)
- console.log(`Account Controller 111 accountLogin ${accountData}`);
  if (!accountData) {
   req.flash("notice", "Please check your credentials and try again.")
   res.status(400).render("account/login", {

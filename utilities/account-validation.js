@@ -98,9 +98,8 @@ validate.loginRules = () => {
           throw new Error(
             'Email does not exists. Please register or use different email'
           ); // Current
-        } else {
-          console.log('Success, email is correct!');
         }
+        
       }),
 
     // body('account_password').custom(async (account_password) => {

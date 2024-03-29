@@ -14,7 +14,7 @@
    </ul>
   <% } %>
   
-  <form id="updateVehicle" action="/inv/update" method="post">
+  <form id="updateForm" action="/inv/update" method="post">
     <div>ALL FIELDS ARE REQUIRED.</div>
     <fieldset>
     <div class="divider">
@@ -57,9 +57,10 @@
       <label for="inv_color">Color</label><br>
       <input type="text" id="inv_color" class="string" name="inv_color" title="" required value="<%= locals.inv_color %>">
     </div>
-    <button id="update_button" type="submit" >Update Vehicle<br/>
+    <button id="update_button" type="submit" disabled>Update Vehicle<br/>
+    <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
     </fieldset>
 </form>
-<script src="/js/script.js"></script>
+<script src="/js/inv-update.js"></script>
 
 
