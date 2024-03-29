@@ -4,12 +4,13 @@ const router = new express.Router();
 const utilities = require('../utilities');
 const invManCont = require('../controllers/managementController');
 const inventoryValidate = require('../utilities/inventory-validation');
+const invCont = require('../controllers/invController')
 
 /* ***********************************
  * Deliver Vehicle Management View
  * Unit 4, deliver vehicle managment landing page
  * ******************************** */
-router.get('/', utilities.handleErrors(invManCont.vehicleManagement));
+// router.get('/', utilities.handleErrors(invCont.vehicleManagement));
 
 /* ***********************************
  * Deliver Add New Classification View

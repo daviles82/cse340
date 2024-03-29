@@ -5,14 +5,14 @@ const inventoryModel = require('../models/inventory-model');
  * Deliver the Vehicle Mangagement page
  * Unit 4,
  * *************************************** */
-async function vehicleManagement(req, res, next) {
-  let nav = await utilities.getNav();
-  res.render('inventory/management', {
-    title: 'Vehicle Management',
-    nav,
-    errors: null,
-  });
-}
+// async function vehicleManagement(req, res, next) {
+//   let nav = await utilities.getNav();
+//   res.render('inventory/management', {
+//     title: 'Vehicle Management',
+//     nav,
+//     errors: null,
+//   });
+// }
 
 /* ****************************************
  * Deliver Add Classification view
@@ -117,7 +117,7 @@ async function addInventoryToFile(req, res) {
 }
 
 module.exports = {
-  vehicleManagement,
+  // vehicleManagement,
   addClassification,
   addInventory,
   addClassificationToFile,
