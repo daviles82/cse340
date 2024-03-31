@@ -30,10 +30,20 @@ router.get("/inv/getInventory/:classification_id", utilities.handleErrors(invCon
  * ******************************** */
 router.get("/inv/edit/:inv_id", utilities.handleErrors(invCont.editInvItemView))
 
+/* ***********************************
+ * Get delete form
+ * Unit 5, Select inv item to delete
+ * ******************************** */
+router.get("/inv/delete/:inv_id", utilities.handleErrors(invCont.deleteInvItemView))
+
 router.post("/inv/update/", 
 inventoryValidate.inventoryRules(),
 inventoryValidate.checkUpdateData,
 utilities.handleErrors(invCont.updateInventory))
 
+router.post("/inv/delete/", 
+inventoryValidate.inventoryRules(),
+// inventoryValidate.checkUpdateData,
+utilities.handleErrors(invCont.deleteInventory))
 
 module.exports = router;

@@ -1,0 +1,45 @@
+<!-- HTML, title implementation using title value from controller -->
+<% if (title) { %>
+  <h1 id="managementTitle"><%= title %></h1>
+  <% } else { res.redirect('/') } %>
+  
+
+  <%- messages() %>
+
+  <% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+  
+  <form id="delteForm" action="/inv/delete" method="post">
+    <div>ALL FIELDS ARE REQUIRED.</div>
+    <fieldset>
+    <div class="divider">
+      <label for="">Classification</label><br>
+    </div>
+    <div class="divider">
+      <label for="inv_make">Make</label><br>
+      <input type="text" id="inv_make" class="string" name="inv_make" title="" readonly value="<%= locals.inv_make %>">
+    </div>
+    <div class="divider">
+      <label for="inv_model">Model</label><br>
+      <input type="text" id="inv_model" class="string" name="inv_model" title="" readonly value="<%= locals.inv_model %>">
+    </div>
+    <div class="divider">
+      <label for="inv_price">Price</label><br>
+      <input type="text" id="inv_price" name="inv_price" title="" readonly  value="<%= locals.inv_price %>">
+    </div>
+    <div class="divider">
+      <label for="inv_year">Year</label><br>
+      <input type="text" id="inv_year" name="inv_year" title="" readonly  value="<%= locals.inv_year %>">
+    </div>
+    <p>Confirm Deletion - The delete is permanent.</p>
+    <button id="delete_button" type="submit">Delete Vehicle<br/>
+    <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
+    </fieldset>
+</form>
+
+

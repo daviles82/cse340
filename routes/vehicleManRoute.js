@@ -4,7 +4,6 @@ const router = new express.Router();
 const utilities = require('../utilities');
 const invManCont = require('../controllers/managementController');
 const inventoryValidate = require('../utilities/inventory-validation');
-const invCont = require('../controllers/invController')
 
 /* ***********************************
  * Deliver Vehicle Management View

@@ -128,6 +128,20 @@ async function updateInventory(
   }
 }
 
+/* ***************************
+ *  Delte Inventory Data
+ * ************************** */
+async function deleteInvModel(inv_id) {
+  try {
+    const sql =
+    'DELETE FROM inventory WHERE inv_id = $1';
+    const data = await pool.query(sql, [inv_id]);
+    return data
+  } catch (error) {
+    console.error("Delte Inventory Error")
+  }
+}
+
 /* **********************
  *   Check for existing classification
  * ********************* */
@@ -148,5 +162,6 @@ module.exports = {
   addClassificationToFile,
   addInventoryToFile,
   checkExistingClassification,
-  updateInventory
+  updateInventory,
+  deleteInvModel
 };
