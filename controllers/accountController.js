@@ -32,7 +32,7 @@ async function accountView(req, res, next) {
   const header = await utilities.getHeader();
   let nav = await utilities.getNav();
   res.render('./account/loggedAccount', {
-    title: 'Account',
+    title: 'Account Management',
     header,
     nav,
     errors: null,
@@ -110,7 +110,6 @@ async function registerAccount(req, res) {
 /* ****************************************
  *  Process login request
  * ************************************ */
-// ATTN%
 async function accountLogin(req, res) {
   const header = await utilities.getHeader();
  let nav = await utilities.getNav()
@@ -137,11 +136,20 @@ async function accountLogin(req, res) {
       res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
     }
     // Check this route
-  return res.redirect("/account")
+  return res.redirect("/account/loggedAccount")
   }
  } catch (error) {
   return new Error('Access Forbidden')
  }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, accountView };
+/* ****************************************
+ *  Process logout request
+ * ************************************ */
+async function accountLogout(req, res) {
+  res.cookie('jwt', '', {httpOnly: true, maxAge: 1});
+  global.data2 = 0;
+  res.redirect('/')
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, accountView, accountLogout };

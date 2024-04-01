@@ -12,7 +12,6 @@ async function getData(classification_id) {
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId;
   const data = await getData(classification_id);
-  // console.log(data);
   const grid = await utilities.buildClassificationGrid(data);
   const header = await utilities.getHeader();
   let nav = await utilities.getNav();

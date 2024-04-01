@@ -31,16 +31,23 @@ Util.getNav = async function (req, res, next) {
  * Constructs the header HTML
  ************************** */
 Util.getHeader = async function (req, res, next) {
-  let data =  "My ACCOUNT";
+  if (global.data2 === 1) {
+    var data3 = `logout">Logout`
+    var data4 = `<div id="tools"><a title="Click to manage account" href="/account/loggedAccount">Welcom Basic </a></a></div>`
+  } else {
+    var data3 = `login">My Account`
+    data4 = ''
+  }
   let list = `<header id="top-header">
   <span class="siteName">
     <a href="/" title="Return to home page">CSE Motors</a>
   </span>
   <div id="tools">`;
-  list += `<a title="Click to log in" href="/account/login">`;
-  list += data;
-  list += `</a></div>
-</header>`;
+  list += `<a title="Click to log in" href="/account/`;
+  list += data3;
+  list += `</a></div>`;
+  list += data4;
+  list += `</header>`;
   return list;
 };
 
@@ -198,6 +205,7 @@ Util.checkJWTToken = (req, res, next) => {
      }
      res.locals.accountData = accountData
      res.locals.loggedin = 1
+     global.data2 = res.locals.loggedin
      next()
     })
   } else {

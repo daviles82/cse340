@@ -20,7 +20,7 @@ router.get('/login', utilities.handleErrors(accountController.buildLogin));
  * Deliver accounts View
  * Unit 5, 
  * ******************************** */
-router.get('/', utilities.checkLogin, utilities.handleErrors(accountController.accountView));
+router.get('/loggedAccount', utilities.checkLogin, utilities.handleErrors(accountController.accountView));
 
 /* ***********************************
  * Deliver Registration View
@@ -49,6 +49,12 @@ router.post(
   regValidate.loginRules(),
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
+)
+
+// Process the logout request
+router.get(
+  "/logout",
+  accountController.accountLogout,
 )
 
 module.exports = router;
