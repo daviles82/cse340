@@ -15,11 +15,12 @@ indivCont.buildByClassificationId = async function (req, res, next) {
   };
   const foundObject = findObjectByInvId(data, individualId);
   const grid = await utilities.buildIndividualGrid(foundObject);
-  // console.log(foundObject); // delete this code after production is done
+  const header = await utilities.getHeader();
   let nav = await utilities.getNav();
   const specificVehicle = `${foundObject.inv_year} ${foundObject.inv_make} ${foundObject.inv_model}`
   res.render('./inventory/individual', {
     title: specificVehicle ,
+    header,
     nav,
     grid,
   });

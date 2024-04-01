@@ -64,10 +64,12 @@ validate.checkRegData = async (req, res, next) => {
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
+    const header = await utilities.getHeader();
     let nav = await utilities.getNav();
     res.render('account/register', {
       errors,
       title: 'Registration',
+      header,
       nav,
       account_firstname,
       account_lastname,
@@ -126,10 +128,12 @@ validate.checkLoginData = async (req, res, next) => {
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
+    const header = await utilities.getHeader();
     let nav = await utilities.getNav();
     res.render('account/login', {
       errors,
       title: 'Login',
+      header,
       nav,
       account_email,
       account_password,

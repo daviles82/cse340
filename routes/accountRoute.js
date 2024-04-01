@@ -8,6 +8,7 @@ const router = new express.Router();
 const accountController = require('../controllers/accountController');
 const utilities = require('../utilities');
 const regValidate = require('../utilities/account-validation');
+const validate = require('../utilities/account-validation');
 
 /* ***********************************
  * Deliver Login View
@@ -41,14 +42,6 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 );
 
-// Process the login attempt
-// Current
-// router.post('/login',
-//   regValidate.loginRules(),
-//   regValidate.checkLoginData,
-//   utilities.handleErrors(accountController.buildLogin)
-//   // res.status(200).send('login process');
-// );
 
 // Process the login request
 router.post(

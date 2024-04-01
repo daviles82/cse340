@@ -14,10 +14,12 @@ invCont.buildByClassificationId = async function (req, res, next) {
   const data = await getData(classification_id);
   // console.log(data);
   const grid = await utilities.buildClassificationGrid(data);
+  const header = await utilities.getHeader();
   let nav = await utilities.getNav();
   const className = data[0].classification_name;
   res.render('./inventory/classification', {
     title: className + ' vehicles',
+    header,
     nav,
     grid,
   });
@@ -29,9 +31,11 @@ invCont.buildByClassificationId = async function (req, res, next) {
  * *************************************** */
 invCont.vehicleManagement = async function (req, res, next) {
   let nav = await utilities.getNav();
+  const header = await utilities.getHeader();
   const classificationSelect = await utilities.buildClassificationList()
   res.render('inventory/management', {
     title: 'Vehicle Management',
+    header,
     nav,
     errors: null,
     classificationSelect,
@@ -57,11 +61,13 @@ invCont.getInventoryJSON = async (req, res, next) => {
 invCont.deleteInvItemView = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
   let nav = await utilities.getNav()
+  const header = await utilities.getHeader();
   const itemData = await invModel.getInventoryById(inv_id);
-  console.log(itemData.inv_description);
+  // console.log(itemData.inv_description);
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`
   res.render("./inventory/delete-confirm", {
     title: "Delete " + itemName,
+    header,
     nav,
     errors: null,
     inv_id: itemData.inv_id,
@@ -76,7 +82,8 @@ invCont.deleteInvItemView = async function (req, res, next) {
  *  Build edit inventory view
  * ************************** */
 invCont.editInvItemView = async function (req, res, next) {
-  const inv_id = parseInt(req.params.inv_id)
+  const inv_id = parseInt(req.params.inv_id);
+  const header = await utilities.getHeader();
   let nav = await utilities.getNav()
   let dropDown = await utilities.buildClassificationList();
   const itemData = await invModel.getInventoryById(inv_id);
@@ -85,6 +92,7 @@ invCont.editInvItemView = async function (req, res, next) {
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`
   res.render("./inventory/edit-inventory", {
     title: "Edit " + itemName,
+    header,
     nav,
     classificationSelect: classificationSelect,
     errors: null,
@@ -107,7 +115,8 @@ invCont.editInvItemView = async function (req, res, next) {
  *  Update Inventory Data
  * ************************** */
 invCont.updateInventory = async function (req, res, next) {
-  let nav = await utilities.getNav()
+  const header = await utilities.getHeader();
+  let nav = await utilities.getNav();
   const {
     inv_id,
     inv_make,
@@ -145,6 +154,7 @@ invCont.updateInventory = async function (req, res, next) {
     req.flash("notice", "Sorry, the insert failed.")
     res.status(501).render("inventory/edit-inventory", {
     title: "Edit " + itemName,
+    header,
     nav,
     classificationSelect: classificationSelect,
     errors: null,

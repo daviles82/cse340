@@ -1,6 +1,7 @@
 const invModel = require('../models/inventory-model');
 const Util = {};
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const validate = require('./account-validation');
 require("dotenv").config()
 
 /* *************************
@@ -25,6 +26,24 @@ Util.getNav = async function (req, res, next) {
   list += '</ul>';
   return list;
 };
+
+/* *************************
+ * Constructs the header HTML
+ ************************** */
+Util.getHeader = async function (req, res, next) {
+  let data =  "My ACCOUNT";
+  let list = `<header id="top-header">
+  <span class="siteName">
+    <a href="/" title="Return to home page">CSE Motors</a>
+  </span>
+  <div id="tools">`;
+  list += `<a title="Click to log in" href="/account/login">`;
+  list += data;
+  list += `</a></div>
+</header>`;
+  return list;
+};
+
 
 /* **************************************
  * Build the classification view HTML
@@ -182,14 +201,14 @@ Util.checkJWTToken = (req, res, next) => {
      next()
     })
   } else {
-   next()
+    next()
   }
- }
+}
 
- /* ****************************************
- *  Check Login
- * ************************************ */
- Util.checkLogin = (req, res, next) => {
+/* ****************************************
+*  Check Login
+* ************************************ */
+Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
     next()
   } else {

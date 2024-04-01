@@ -114,11 +114,13 @@ validate.checkInventoryData = async (req, res, next) => {
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     let dropDown = await utilities.buildClassificationList();
+    const header = await utilities.getHeader();
     let nav = await utilities.getNav()
     res.render("inventory/add-inventory", {
       errors,
       title: "Add New Vehicle",
       dropDown,
+      header,
       nav,
       classification_id,
       inv_make,
@@ -156,12 +158,14 @@ validate.checkUpdateData = async (req, res, next) => {
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     let dropDown = await utilities.buildClassificationList();
+    const header = await utilities.getHeader();
     let nav = await utilities.getNav()
     const itemName = `${inv_make} ${inv_model}`
     res.render("inventory/edit-inventory", {
       errors,
       title: "Edit " + itemName,
       dropDown,
+      header,
       nav,
       classification_id,
       inv_make,
@@ -212,10 +216,12 @@ validate.checkClassificationData = async (req, res, next) => {
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
+    const header = await utilities.getHeader();
     let nav = await utilities.getNav()
     res.render("inventory/add-classification", {
       errors,
       title: "Add New Classification",
+      header,
       nav,
       classification_name,
     })
