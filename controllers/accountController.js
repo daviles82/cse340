@@ -29,11 +29,15 @@ async function buildLogin(req, res, next) {
  * Unit 5,
  * *************************************** */
 async function accountView(req, res, next) {
+  const Access = res.locals.access === undefined ? '' : res.locals.access;
+  const updateAccountlink = res.locals.linkaccount === undefined ? '' : res.locals.linkaccount;
   const header = await utilities.getHeader();
   let nav = await utilities.getNav();
   res.render('./account/loggedAccount', {
     title: 'Account Management',
+    updateAccountlink,
     header,
+    Access,
     nav,
     errors: null,
   });

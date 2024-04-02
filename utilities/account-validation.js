@@ -1,6 +1,8 @@
 const utilities = require('.');
 const { body, validationResult } = require('express-validator');
-const accountModel = require('../models/account-model'); // Part of team task
+const accountModel = require('../models/account-model');
+
+
 
 const validate = {};
 
@@ -122,14 +124,13 @@ validate.loginRules = () => {
 /* ******************************
  * Check data and return errors or continue to login
  * ***************************** */
-// Current
 validate.checkLoginData = async (req, res, next) => {
   const { account_email, account_password } = req.body;
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     const header = await utilities.getHeader();
-    let nav = await utilities.getNav();
+    let nav = await utilities2.getNav();
     res.render('account/login', {
       errors,
       title: 'Login',
@@ -142,5 +143,29 @@ validate.checkLoginData = async (req, res, next) => {
   }
   next();
 };
+
+/* ******************************
+ * Check data and return account type
+ * ***************************** */
+validate.accountType = async (req, res, next) => {
+  const account_type = (res.locals && res.locals.accountData && res.locals.accountData.account_type !== undefined) ? res.locals.accountData.account_type : 0;
+  // console.log(`account-validation.js line 150 ${JSON.stringify(res.locals.accountData)}`);
+  if (account_type === "Employee" || account_type === "Admin") {
+    res.locals.linkaccount = '/account/edit-account'
+    res.locals.access = "Access"
+    res.locals.accountData
+    req.flash("notice", 'Access Granted')
+    next()
+  } else if (account_type === "Client") {
+    res.locals.linkaccount = '/account/edit-account'
+    res.locals.accountData
+    req.flash("notice", 'Limited Access Granted')
+    next()
+  }
+  else {
+    req.flash("notice", 'Invenotory Access Denied, please log in.')
+    res.redirect('/account/login')
+  }
+}
 
 module.exports = validate;

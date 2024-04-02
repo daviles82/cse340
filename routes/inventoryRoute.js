@@ -4,6 +4,7 @@ const router = new express.Router();
 const invCont = require('../controllers/invController');
 const utilities = require('../utilities/');
 const inventoryValidate = require('../utilities/inventory-validation');
+const accessValidation = require('../utilities/account-validation');
 
 
 
@@ -15,7 +16,7 @@ router.get('/inv/type/:classificationId/', invCont.buildByClassificationId);
  * Deliver Vehicle Management View
  * Unit 4, deliver vehicle managment landing page
  * ******************************** */
-router.get('/inv', utilities.handleErrors(invCont.vehicleManagement));
+router.get('/inv', accessValidation.accountType, utilities.handleErrors(invCont.vehicleManagement));
 
 
 /* ***********************************

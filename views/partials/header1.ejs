@@ -8,3 +8,9 @@
   </div>
 </header>
 <!-- <script src="/public/js/login-update.js"></script> -->
+
+<% if (welcName) { %>
+  <div id="tools"><a title="Click to manage account" href="/account/loggedAccount">Welcome <%= welcName %></a></a></div>`
+  </header>
+
+  <% } else { res.redirect('/') } %> 

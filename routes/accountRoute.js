@@ -20,7 +20,7 @@ router.get('/login', utilities.handleErrors(accountController.buildLogin));
  * Deliver accounts View
  * Unit 5, 
  * ******************************** */
-router.get('/loggedAccount', utilities.checkLogin, utilities.handleErrors(accountController.accountView));
+router.get('/loggedAccount', utilities.checkLogin, validate.accountType, utilities.handleErrors(accountController.accountView));
 
 /* ***********************************
  * Deliver Registration View

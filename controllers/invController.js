@@ -31,6 +31,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.vehicleManagement = async function (req, res, next) {
   let nav = await utilities.getNav();
   const header = await utilities.getHeader();
+  // console.log(res.locals.accountData.account_firstname);
   const classificationSelect = await utilities.buildClassificationList()
   res.render('inventory/management', {
     title: 'Vehicle Management',
@@ -86,7 +87,6 @@ invCont.editInvItemView = async function (req, res, next) {
   let nav = await utilities.getNav()
   let dropDown = await utilities.buildClassificationList();
   const itemData = await invModel.getInventoryById(inv_id);
-  console.log(itemData.inv_description);
   const classificationSelect = await utilities.buildClassificationList(itemData.classification_id)
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`
   res.render("./inventory/edit-inventory", {
