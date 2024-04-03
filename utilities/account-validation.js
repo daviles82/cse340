@@ -106,18 +106,6 @@ validate.loginRules = () => {
         
       }),
 
-    // body('account_password').custom(async (account_password) => {
-    //   const passwordCorrect = await accountModel.checkPassword(
-    //     account_password
-    //   );
-    //   if (!passwordCorrect) {
-    //     throw new Error(
-    //       'Password is incorrect.'
-    //     );
-    //   } else {
-    //     console.log('Success, password is correct!');
-    //   }
-    // }),
   ];
 };
 
@@ -128,9 +116,9 @@ validate.checkLoginData = async (req, res, next) => {
   const { account_email, account_password } = req.body;
   let errors = [];
   errors = validationResult(req);
+  const header = await utilities.getHeader();
+  let nav = await utilities.getNav();
   if (!errors.isEmpty()) {
-    const header = await utilities.getHeader();
-    let nav = await utilities2.getNav();
     res.render('account/login', {
       errors,
       title: 'Login',
@@ -149,23 +137,129 @@ validate.checkLoginData = async (req, res, next) => {
  * ***************************** */
 validate.accountType = async (req, res, next) => {
   const account_type = (res.locals && res.locals.accountData && res.locals.accountData.account_type !== undefined) ? res.locals.accountData.account_type : 0;
-  // console.log(`account-validation.js line 150 ${JSON.stringify(res.locals.accountData)}`);
+  console.log(`account-validation.js line 140 ${JSON.stringify(res.locals.accountData)}`);
   if (account_type === "Employee" || account_type === "Admin") {
-    res.locals.linkaccount = '/account/edit-account'
+    res.locals.linkaccount = '/account/updateAccount'
     res.locals.access = "Access"
     res.locals.accountData
     req.flash("notice", 'Access Granted')
     next()
   } else if (account_type === "Client") {
-    res.locals.linkaccount = '/account/edit-account'
+    res.locals.linkaccount = '/account/updateAccount'
     res.locals.accountData
     req.flash("notice", 'Limited Access Granted')
     next()
   }
   else {
-    req.flash("notice", 'Invenotory Access Denied, please log in.')
+    req.flash("notice", 'Access Denied, please log in.')
     res.redirect('/account/login')
   }
 }
+
+/*  **********************************
+ *  Account Update Data Validation Rules
+ * ********************************* */
+validate.accountUpdateRules = () => {
+  return [
+    // firstname is required and must be string
+    body('account_firstname')
+      .trim()
+      .escape()
+      .notEmpty()
+      .isLength({ min: 1 })
+      .withMessage('Please provide a first name.'), // on error this message is sent.
+
+    // lastname is required and must be string
+    body('account_lastname')
+      .trim()
+      .escape()
+      .notEmpty()
+      .isLength({ min: 1 })
+      .withMessage('Please provide a last name.'), // on error this message is sent.
+
+    // valid email is required and cannot already exist in the database
+    // Part of team task
+    body('account_email')
+      .trim()
+      .isEmail()
+      .normalizeEmail() // refer to validator.js docs
+      .withMessage('A valid email is required.')
+      .custom(async (account_email) => {
+        const emailExists = await accountModel.checkExistingEmail(
+          account_email
+        );
+        if (emailExists && body.account_email !== body.account_email) {
+          throw new Error('Email exists. Please log in or use different email');
+        }
+      }),
+  ];
+};
+
+
+validate.passwordUpdateRules = () => {
+  return [
+    // password is required and must be strong password
+    body('account_password')
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage('Password does not meet requirements.'),
+    ]
+}
+
+/* ******************************
+ * Check data and return errors or continue to update account
+ * ***************************** */
+validate.checkAccountUpdateData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email, account_id } = req.body;
+  console.log(req.body);
+  let errors = [];
+  errors = validationResult(req);
+  const header = await utilities.getHeader();
+  let nav = await utilities.getNav();
+  if (!errors.isEmpty()) {
+    res.render('account/updateAccount', {
+      errors,
+      title: 'Edit Account',
+      header,
+      nav,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+    return;
+  }
+  next();
+};
+
+/* ******************************
+ * Check update password rules
+ * ***************************** */
+validate.checkPasswordUpdate = async (req, res, next) => {
+  const { account_password, account_type} = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const header = await utilities.getHeader();
+    let nav = await utilities.getNav();
+    res.render('account/updateAccount', {
+      errors,
+      title: 'Edit Account',
+      header,
+      nav,
+      account_password,
+      account_type
+    });
+    return;
+  }
+  next();
+};
 
 module.exports = validate;

@@ -746,3 +746,8 @@ input:required:valid {
 }
 
 /* --------- valid/invalid--------- */
+
+
+#pswdBtn{
+  color: black;
+}

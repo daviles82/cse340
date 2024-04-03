@@ -1,7 +1,6 @@
 const invModel = require('../models/inventory-model');
 const Util = {};
 const jwt = require("jsonwebtoken");
-const validate = require('./account-validation');
 require("dotenv").config()
 
 /* *************************
@@ -26,6 +25,7 @@ Util.getNav = async function (req, res, next) {
   list += '</ul>';
   return list;
 };
+
 
 /* *************************
  * Constructs the header HTML
@@ -221,6 +221,7 @@ Util.checkJWTToken = (req, res, next) => {
 * ************************************ */
 Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
+    res.locals.accountData.account_id
     next()
   } else {
     req.flash("notice", "Please log in.")

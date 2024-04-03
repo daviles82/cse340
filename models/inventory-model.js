@@ -128,7 +128,7 @@ async function updateInventory(
 }
 
 /* ***************************
- *  Delte Inventory Data
+ *  Delete Inventory Data
  * ************************** */
 async function deleteInvModel(inv_id) {
   try {

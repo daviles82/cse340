@@ -6,12 +6,6 @@ const invManCont = require('../controllers/managementController');
 const inventoryValidate = require('../utilities/inventory-validation');
 
 /* ***********************************
- * Deliver Vehicle Management View
- * Unit 4, deliver vehicle managment landing page
- * ******************************** */
-// router.get('/', utilities.handleErrors(invCont.vehicleManagement));
-
-/* ***********************************
  * Deliver Add New Classification View
  * Unit 4,
  * ******************************** */

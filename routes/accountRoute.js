@@ -23,6 +23,24 @@ router.get('/login', utilities.handleErrors(accountController.buildLogin));
 router.get('/loggedAccount', utilities.checkLogin, validate.accountType, utilities.handleErrors(accountController.accountView));
 
 /* ***********************************
+ * Deliver account edit View
+ * Unit 5, 
+ * ******************************** */
+router.get('/updateAccount', utilities.checkLogin, utilities.handleErrors(accountController.accountEditView));
+
+/* ***********************************
+ * Process account edit
+ * Unit 5, 
+ * ******************************** */
+router.post('/updateAccount', validate.accountUpdateRules(), validate.checkAccountUpdateData, utilities.handleErrors(accountController.editAccount));
+
+/* ***********************************
+ * Process password update
+ * Unit 5, 
+ * ******************************** */
+router.post('/loggedAccount', validate.passwordUpdateRules(), validate.checkPasswordUpdate, utilities.handleErrors(accountController.updatePassword));
+
+/* ***********************************
  * Deliver Registration View
  * Unit 4, deliver registration view activity
  * ******************************** */
