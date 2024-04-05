@@ -14,8 +14,8 @@
    </ul>
   <% } %>
   
-  <form id="delteForm" action="/inv/delete" method="post">
-    <div>ALL FIELDS ARE REQUIRED.</div>
+  <form id="deleteForm" action="/inv/delete" method="post">
+    <p>Confirm Deletion - The delete is permanent.</p>
     <fieldset>
     <div class="divider">
       <label for="">Classification</label><br>
@@ -36,8 +36,7 @@
       <label for="inv_year">Year</label><br>
       <input type="text" id="inv_year" name="inv_year" title="" readonly  value="<%= locals.inv_year %>">
     </div>
-    <p>Confirm Deletion - The delete is permanent.</p>
-    <button id="delete_button" type="submit">Delete Vehicle<br/>
+    <button id="delete_button" type="submit">Delete Item<br/>
     <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
     </fieldset>
 </form>

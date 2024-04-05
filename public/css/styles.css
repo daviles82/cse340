@@ -33,6 +33,7 @@ header a {
 
 #tools {
   float: right;
+  margin: 2px;
 }
 
 /* Small View-------------------header.ejs------------------- */
@@ -621,7 +622,7 @@ footer p {
 }
 
 
-#loginForm, #register, #addClassification, #addVehicle {
+#loginForm, #register, #addClassification, #addVehicle,#updateForm, #deleteForm{
   border: 3px solid;
   border-color: #989da2;
   border-radius: 4px;
@@ -641,12 +642,22 @@ footer p {
 }
 
 #loginForm label,
+#updateForm,
+#deleteForm,
 #loginForm span,
 #loginForm span a, #loginForm p, #register label, #register span, #register p, #pswdBtn, #addClassification, #addVehicle {
   color: rgb(241, 239, 239);
 }
+#loginForm div input#email {
+  border-radius: 4px;
+  width: 280px;
+  border: none;
+  outline: none;
+  margin: 5px;
+}
 
-#email,
+
+
 #password , #register input, #classification_name, #addNewVehicle, #addVehicle input {
   border-radius: 4px;
   width: 280px;
@@ -741,7 +752,7 @@ input:focus:invalid {
 }
 
 input:required:valid {
-  background-color: blue;
+  background-color: lightcyan;
   border: 2px solid blue;
 }
 
@@ -750,4 +761,64 @@ input:required:valid {
 
 #pswdBtn{
   color: black;
+}
+
+#updateAccountForm{
+  z-index: 2;
+  
+}
+
+#change_password{
+  z-index: 1;
+}
+
+#loggedIn{
+  margin-left: 10px;
+}
+
+#updateAccount{
+  margin-left: 10px;
+}
+
+#greetingCard{
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+#updateAccountForm div{
+  margin-left: 10px;
+}
+
+#change_password div{
+  margin-left: 10px;
+}
+
+#updateAccountForm div input{
+  margin-bottom: 10px;
+}
+#invManLink{
+  margin-left: 10px;
+}
+
+.manageInventory{
+  margin-left: 10px;
+}
+
+#classificationList{
+  margin-left: 10px;
+}
+
+#update_button{
+  margin-top: 10px;
+  color: white;
+}
+
+#delete_button{
+  margin-top: 10px;
+  color: black;
+}
+
+
+#updateForm div.divider select#classificationList {
+  margin-left: -2px;
 }

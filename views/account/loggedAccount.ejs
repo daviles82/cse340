@@ -1,16 +1,13 @@
 <% if (title) { %>
-  <h1 id="loginTitle"><%= title %></h1>
-  <% } else { res.redirect('/') } %>
-  
-  <%- messages() %>
-
-<p>You're logged in</p>
-
-<% if (updateAccountlink) { %>
-  <p> <a href="<%= updateAccountlink %>">Edit Account Information</a></p>
-  <% } else { } %>
-
-<% if (Access) { %>
-  <h3 id="invManagement">Inventory Management</h3>
-  <p> <a href="/inv">Manage Inventory</a></p>
-  <% } else { } %>
+<h1 id="loginTitle"><%= title %></h1>
+<% } else { res.redirect('/') } %> <%- messages() %> <% if (updateAccountlink) {
+%>
+<h5 id="greetingCard"><%= greeting %></h5>
+<p id="loggedIn">You're logged in</p>
+<p id="updateAccount">
+  <a href="<%= updateAccountlink %>">Edit Account Information</a>
+</p>
+<% } else { } %> <% if (Access) { %>
+<h3 id="invManagement">Inventory Management</h3>
+<p id="invManLink"><a href="/inv">Manage Inventory</a></p>
+<% } else { } %>

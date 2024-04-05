@@ -11,12 +11,11 @@
   <%  }) %>
    </ul>
   <% } %>
-
-  <form id="updateAccountForm" action="/account/updateAccount" method="post">
+<form id="updateAccountForm" action="/account/updateAccount" method="post">
     <div>
       <label for="account_firstname">First name</label><br>
       <input type="text" id="account_firstname" name="account_firstname" value="<%= locals.account_firstname %>" required>
-    <div>
+    </div>
     <div>
       <label for="account_lastname">Last Name</label><br>
       <input type="text" id="account_lastname" name="account_lastname" value="<%= locals.account_lastname %>" required>
@@ -25,17 +24,19 @@
       <label for="email">Email:</label><br>
       <input type="email" id="email" name="account_email" value="<%= locals.account_email %>" required>
     </div>
-    <button id="button" type="submit" disabled>Update<br>
-    <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>
-    
-  </form>
-  
-  
-  <form id="change_password" action="/account/loggedAccount" method="post">
     <div>
-      <p>Update Password</p>
+      <button class="button" type="submit" disabled>Update<br/>
+      <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>
+    </div>
+  </form>
+
+<form id="change_password" action="/account/loggedAccount" method="post">
+    <h3>Update Password</h3>
+    <div>
       <p>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</p>
       <p>*note your original password will be changed.</p>
+    </div>
+    <div>
       <label for="account_password">Password:</label><br>
       <input
       type="password"
@@ -45,18 +46,15 @@
       required
       pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
       />
+      <p>
+        Passwords must be minimum of 12 characters and include 1 capital letter,
+        1 number and 1 special character.
+      </p>
+      <span id="pswdBtn">Show Password</span><br><br>
+      <button id="update_password_button" type="submit" >Update Password<br/>
+      <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>  
     </div>
-    <p>
-      Passwords must be minimum of 12 characters and include 1 capital letter,
-      1 number and 1 special character.
-    </p>
-    <span id="pswdBtn">Show Password</span>
-    <button id="update_password_button" type="submit" >Update Password<br/>
-    <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>" <% } %>>
-
-      
-      
-    </form>
-    <script src="/js/account-update.js"></script>
-    <script src="/js/script.js"></script>
+</form>
+  <script src="/js/account-update.js"></script>
+  <script src="/js/script.js"></script>
     

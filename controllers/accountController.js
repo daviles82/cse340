@@ -32,11 +32,13 @@ async function accountView(req, res, next) {
   const Access = res.locals.access === undefined ? '' : res.locals.access;
   const updateAccountlink = await
   res.locals.linkaccount === undefined ? '' : res.locals.linkaccount;
+  const greeting = `Welcome ${res.locals.accountData.account_firstname}`
   const header = await utilities.getHeader();
   let nav = await utilities.getNav();
   console.log(updateAccountlink);
   res.render('./account/loggedAccount', {
     title: 'Account Management',
+    greeting,
     updateAccountlink,
     header,
     Access,
