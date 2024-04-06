@@ -260,3 +260,32 @@ UPDATE
 SET
 	inv_image = REPLACE (inv_image, 'images/', 'images/vehicles/'),
   inv_thumbnail = REPLACE (inv_thumbnail, 'images/', 'images/vehicles/');
+
+
+
+-- project) Insert review table
+CREATE TABLE IF NOT EXISTS public.review
+(
+    review_id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+    review_text character varying NOT NULL,
+    review_date timestamp WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    inv_id integer NOT NULL,
+    account_id integer NOT NULL ,
+    CONSTRAINT review_pkey PRIMARY KEY (review_id)
+);
+
+-- project) Create relationship between inventory table and review table
+ALTER TABLE IF EXISTS public.review
+	ADD CONSTRAINT fk_inv FOREIGN KEY (inv_id)
+	REFERENCES public.inventory (inv_id) MATCH SIMPLE
+	ON UPDATE CASCADE
+	ON DELETE NO ACTION;
+
+-- project) Create relationship between account table and review table
+ALTER TABLE IF EXISTS public.review
+	ADD CONSTRAINT fk_account FOREIGN KEY (account_id)
+	REFERENCES public.account (account_id) MATCH SIMPLE
+	ON UPDATE CASCADE
+	ON DELETE NO ACTION;
+
+  

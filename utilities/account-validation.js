@@ -137,7 +137,6 @@ validate.checkLoginData = async (req, res, next) => {
  * ***************************** */
 validate.accountType = async (req, res, next) => {
   const account_type = (res.locals && res.locals.accountData && res.locals.accountData.account_type !== undefined) ? res.locals.accountData.account_type : 0;
-  console.log(`account-validation.js line 140 ${JSON.stringify(res.locals.accountData)}`);
   if (account_type === "Employee" || account_type === "Admin") {
     res.locals.linkaccount = '/account/updateAccount'
     res.locals.access = "Access"
@@ -218,7 +217,6 @@ validate.passwordUpdateRules = () => {
  * ***************************** */
 validate.checkAccountUpdateData = async (req, res, next) => {
   const { account_firstname, account_lastname, account_email, account_id } = req.body;
-  console.log(req.body);
   let errors = [];
   errors = validationResult(req);
   const header = await utilities.getHeader();

@@ -35,7 +35,6 @@ async function accountView(req, res, next) {
   const greeting = `Welcome ${res.locals.accountData.account_firstname}`
   const header = await utilities.getHeader();
   let nav = await utilities.getNav();
-  console.log(updateAccountlink);
   res.render('./account/loggedAccount', {
     title: 'Account Management',
     greeting,
@@ -242,7 +241,6 @@ async function updatePassword(req, res) {
     account_password,
     account_id
   } = req.body;
-  console.log(`accountController line 242 ${JSON.stringify(req.body)}`);
   // Hash the password before storing
   let hashedPassword;
   try {
