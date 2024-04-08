@@ -9,4 +9,9 @@ router.get(
   invCont.buildByItemId
 );
 
+router.post(
+  '/inv/type/:classificationId/detail/:individualId',
+  invCont.inPageReviewData
+);
+
 module.exports = router;

@@ -33,6 +33,7 @@ async function accountView(req, res, next) {
   const updateAccountlink = await
   res.locals.linkaccount === undefined ? '' : res.locals.linkaccount;
   const greeting = `Welcome ${res.locals.accountData.account_firstname}`
+  const reviewManagement = await utilities.userViewReviewList(res.locals.accountData.account_id);
   const header = await utilities.getHeader();
   let nav = await utilities.getNav();
   res.render('./account/loggedAccount', {
@@ -40,6 +41,7 @@ async function accountView(req, res, next) {
     greeting,
     updateAccountlink,
     header,
+    reviewManagement,
     Access,
     nav,
     errors: null,
@@ -287,6 +289,7 @@ async function updatePassword(req, res) {
 }
 
 
+
 module.exports = {
   buildLogin,
   buildRegister,
@@ -296,5 +299,5 @@ module.exports = {
   accountLogout,
   accountEditView,
   editAccount,
-  updatePassword
+  updatePassword,
 };

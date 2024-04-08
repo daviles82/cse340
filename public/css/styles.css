@@ -622,7 +622,7 @@ footer p {
 }
 
 
-#loginForm, #register, #addClassification, #addVehicle,#updateForm, #deleteForm{
+#loginForm, #register, #addClassification, #addVehicle,#updateForm, #deleteForm, #updateReview, #deleteReviewForm{
   border: 3px solid;
   border-color: #989da2;
   border-radius: 4px;
@@ -645,7 +645,7 @@ footer p {
 #updateForm,
 #deleteForm,
 #loginForm span,
-#loginForm span a, #loginForm p, #register label, #register span, #register p, #pswdBtn, #addClassification, #addVehicle {
+#loginForm span a, #loginForm p, #register label, #register span, #register p, #pswdBtn, #addClassification, #addVehicle, #updateReview,#deleteReviewForm {
   color: rgb(241, 239, 239);
 }
 #loginForm div input#email {
@@ -821,4 +821,56 @@ input:required:valid {
 
 #updateForm div.divider select#classificationList {
   margin-left: -2px;
+}
+
+.date{
+}
+
+#reviewHeader{
+  font-weight: bold;
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+#reviewing {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+#firstReview{
+  font-size: 20px;
+  margin-left: 10px;
+  background-color: yellow;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#addReview{
+  margin-left: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#inPageReview{
+  margin-top: 10px;
+}
+
+#inPageReview fieldset{
+  margin: 10px;
+}
+
+#submit_button{
+  margin-top: 5px;
+}
+
+.inForm{
+  display: inline-block;
+  margin-top: 7px;
+}
+
+#userReviews{
+  list-style-type: none;
+}
+#userReviews li{
+  margin: 5px;
 }

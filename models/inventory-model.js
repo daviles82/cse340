@@ -137,7 +137,7 @@ async function deleteInvModel(inv_id) {
     const data = await pool.query(sql, [inv_id]);
     return data
   } catch (error) {
-    console.error("Delte Inventory Error")
+    console.error("Delete Inventory Error")
   }
 }
 
@@ -154,6 +154,92 @@ async function checkExistingClassification(classification_name) {
   }
 }
 
+/* ***************************
+ *  Get all reviews by inv_id
+ * ************************** */
+async function getReviewByInvId(inv_id) {
+  try {
+    const sql = 'SELECT * FROM public.review JOIN public.account ON public.review.account_id = public.account.account_id WHERE public.review.inv_id = $1';
+    const data = await pool.query(sql, [inv_id]);
+    return data.rows;
+  } catch (error) {
+    console.error(`getreviewbyinvid error` + error);
+  }
+}
+
+/* ***************************
+ *  Get all reviews by account_id
+ * ************************** */
+async function getUserReviews(account_id) {
+  try {
+    const sql = 'SELECT * FROM public.review JOIN public.inventory ON public.review.inv_id = public.inventory.inv_id WHERE public.review.account_id = $1';
+    const data = await pool.query(sql, [account_id]);
+    return data.rows;
+  } catch (error) {
+    console.error(`getreviewbyinvid error` + error);
+  }
+}
+
+/* ***************************
+ *  Insert review by inv_id
+ * ************************** */
+async function reviewSubmission(review_text, review_date, inv_id, account_id) {
+  try {
+    const sql = 'INSERT INTO public.review (review_text, review_date, inv_id, account_id) VALUES ( $1, $2, $3, $4) RETURNING *';
+    const data = await pool.query(sql, [review_text, review_date, inv_id, account_id]);
+    return data.rows;
+  } catch (error) {
+    console.log(`reviewsubmission error` + error);
+  }
+}
+
+/* ***************************
+ *  Get reviews by review_id
+ * ************************** */
+async function getReviewByReviewId(review_id) {
+  try {
+    const sql = 'SELECT * FROM public.review WHERE public.review.review_id = $1';
+    const data = await pool.query(sql, [review_id]);
+    return data.rows;
+  } catch (error) {
+    console.error(`getreviewbyinvid error` + error);
+  }
+}
+
+/* ***************************
+ *  Update Inventory Data
+ * ************************** */
+async function reviewUpdateSubmission(
+  review_text,
+  review_id
+) {
+  try {
+    const sql =
+      "UPDATE public.review SET review_text = $1 WHERE review_id = $2 RETURNING *"
+    const data = await pool.query(sql, [
+      review_text,
+      review_id
+    ])
+    return data.rows[0]
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+}
+
+/* ***************************
+ *  Delete Review Data
+ * ************************** */
+async function reviewDeletion(review_id) {
+  try {
+    const sql =
+    'DELETE FROM review WHERE review_id = $1';
+    const data = await pool.query(sql, [review_id]);
+    return data
+  } catch (error) {
+    console.error("Delete Inventory Error")
+  }
+}
+
 module.exports = {
   getInventoryById,
   getClassifications,
@@ -162,5 +248,11 @@ module.exports = {
   addInventoryToFile,
   checkExistingClassification,
   updateInventory,
-  deleteInvModel
+  deleteInvModel,
+  getReviewByInvId,
+  reviewSubmission,
+  getUserReviews,
+  getReviewByReviewId,
+  reviewUpdateSubmission,
+  reviewDeletion
 };

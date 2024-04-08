@@ -47,4 +47,28 @@ inventoryValidate.inventoryRules(),
 // inventoryValidate.checkUpdateData,
 utilities.handleErrors(invCont.deleteInventory))
 
+/* ***********************************
+ * Get review update form
+ * Unit 6
+ * ******************************** */
+router.get("/inventory/edit-review.ejs/:review_id", utilities.handleErrors(invCont.updateReview));
+
+/* ***********************************
+ * Get delete verification form
+ * Unit 6
+ * ******************************** */
+router.get("/inventory/delete-review.ejs/:review_id", utilities.handleErrors(invCont.deleteReview));
+
+/* ***********************************
+ * Process review update
+ * Unit 6
+ * ******************************** */
+router.post("/account/loggedAccount", utilities.handleErrors(invCont.updateReviewData));
+
+/* ***********************************
+ * Process review deletion
+ * Unit 6
+ * ******************************** */
+router.post("/account", utilities.handleErrors(invCont.deleteReviewData));
+
 module.exports = router;

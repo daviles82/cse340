@@ -1,4 +1,15 @@
 <!-- HTML, title implementation using title value from controller -->
 <% if (title) { %>
   <h1 id="individual-title"><%= title %></h1>
-  <% } else { res.redirect('/') } %> <%# messages() %> <%- grid %>
+  <% } else { res.redirect('/') } %>
+  <%- messages() %>
+  
+  <%- grid %>
+
+  <%- reviews %>
+
+  <script src="/js/review.js"></script>
+  <script src="/js/review-update.js"></script>
+    
+
+
