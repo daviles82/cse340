@@ -24,6 +24,27 @@ invCont.buildByClassificationId = async function (req, res, next) {
   });
 };
 
+
+/* ***************************
+ *  Build by individual view
+ * ************************** */
+invCont.buildByItemId = async function (req, res, next) {
+  const data2 = await invModel.getInventoryById(req.params.individualId);
+  const grid = await utilities.buildIndividualGrid(data2);
+  const reviews = await utilities.buildReviewList(data2.inv_id);
+  const specificVehicle = `${data2.inv_year} ${data2.inv_make} ${data2.inv_model}`
+  let nav = await utilities.getNav();
+  const header = await utilities.getHeader();
+  res.render('./inventory/individual', {
+    title: specificVehicle ,
+    header,
+    nav,
+    reviews,
+    grid,
+  });
+};
+
+
 /* ****************************************
  * Deliver the Vehicle Mangagement page
  * Unit 4,
@@ -31,7 +52,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.vehicleManagement = async function (req, res, next) {
   let nav = await utilities.getNav();
   const header = await utilities.getHeader();
-  // console.log(res.locals.accountData.account_firstname);
   const classificationSelect = await utilities.buildClassificationList()
   res.render('inventory/management', {
     title: 'Vehicle Management',
@@ -63,7 +83,6 @@ invCont.deleteInvItemView = async function (req, res, next) {
   let nav = await utilities.getNav()
   const header = await utilities.getHeader();
   const itemData = await invModel.getInventoryById(inv_id);
-  // console.log(itemData.inv_description);
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`
   res.render("./inventory/delete-confirm", {
     title: "Delete " + itemName,
@@ -189,6 +208,122 @@ invCont.deleteInventory = async function (req, res, next) {
   } else {
     req.flash("notice", `The delete was unsuccessful.`)
     res.redirect("/inv/delete/" + parseInt(inv_id))
+  }
+}
+
+/* ****************************************
+ *  Process In page review
+ * *************************************** */
+invCont.inPageReviewData = async function (req, res, next) {
+  const {review_text, review_date, inv_id, account_id} =
+    req.body;
+
+  const insertReview = await invModel.reviewSubmission(
+    review_text, 
+    review_date, 
+    inv_id, 
+    account_id
+  );
+
+  if (insertReview) {
+    req.flash(
+      'notice',
+      `Congratulations, you submitted a review.`
+    );
+    res.status(201).redirect(`/inv/type/:classificationId/detail/${req.body.inv_id}`);
+  } else {
+    req.flash('notice', 'Sorry, the review submisstion failed.');
+    res.status(501).redirect(`/inv/type/:classificationId/detail/${req.body.inv_id}`);
+  }
+}
+
+/* ****************************************
+ * Deliver the Review Update form
+ * *************************************** */
+invCont.updateReview = async function(req, res, next) {
+  let reviewId = await invModel.getReviewByReviewId(req.params.review_id)
+  let item = await invModel.getInventoryById(reviewId[0].inv_id)
+  const itemDescription = item.inv_year + ' ' + item.inv_make + ' ' + item.inv_model
+  let date = new Date(reviewId[0].review_date)
+  let viewReady = { year: 'numeric', month: 'long', day: 'numeric' };
+  let readableDate = date.toLocaleDateString('en-US', viewReady)
+  res.locals.review_date = readableDate
+  let nav = await utilities.getNav();
+  const header = await utilities.getHeader();
+  res.locals.vehicle_data = reviewId[0]
+  res.render('inventory/edit-review.ejs', {
+    title: 'Edit '+ itemDescription + ' Review',
+    header,
+    nav,
+    errors: null,
+  });
+}
+
+/* ****************************************
+ * Deliver the Delete Verification form
+ * *************************************** */
+invCont.deleteReview = async function(req, res, next) {
+  let reviewId = await invModel.getReviewByReviewId(req.params.review_id);
+  let item = await invModel.getInventoryById(reviewId[0].inv_id)
+  let date = new Date(reviewId[0].review_date)
+  let viewReady = { year: 'numeric', month: 'long', day: 'numeric' };
+  let readableDate = date.toLocaleDateString('en-US', viewReady)
+  let nav = await utilities.getNav();
+  const header = await utilities.getHeader();
+  const itemDescription = item.inv_year + ' ' + item.inv_make + ' ' + item.inv_model
+  res.locals.review_date = readableDate
+  res.locals.vehicle_data = reviewId[0]
+  res.render('inventory/delete-review.ejs', {
+    title: 'Delete ' + itemDescription + ' Review',
+    header,
+    nav,
+    errors: null,
+  });
+}
+
+/* ****************************************
+ * Process the Review Update
+ * *************************************** */
+invCont.updateReviewData = async function(req, res, next) {
+  const {review_text, review_id} =
+    req.body;
+
+  const insertReviewUpdate = await invModel.reviewUpdateSubmission(
+    review_text, review_id
+  );
+
+  if (insertReviewUpdate) {
+    req.flash(
+      'notice',
+      `Congratulations, you updated a review.`
+    );
+    res.status(201).redirect(`/account/loggedAccount/`);
+  } else {
+    req.flash('notice', 'Sorry, the review update failed.');
+    res.status(501).redirect(`/inventory/edit-review.ejs/${req.body.review_id}`);
+  }
+}
+
+/* ****************************************
+ * Process the Review Deletion
+ * *************************************** */
+invCont.deleteReviewData = async function(req, res, next) {
+  const {review_id} =
+    req.body;
+
+  const insertDeleteUpdate = await invModel.reviewDeletion(
+  review_id
+  );
+
+  if (insertDeleteUpdate) {
+    req.flash(
+      'notice',
+      `Congratulations, your review is deleted.`
+    );
+    res.status(201).redirect(`/account/loggedAccount/`);
+  } else {
+    req.flash('notice', 'Sorry, the deletion failed.');
+    res.status(501).redirect(`/inventory/delete-review.ejs/${req.body.review_id}`);
   }
 }
 

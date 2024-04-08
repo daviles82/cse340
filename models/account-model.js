@@ -31,7 +31,6 @@ async function checkExistingEmail(account_email) {
   try {
     const sql = 'SELECT * FROM account WHERE account_email = $1';
     const email = await pool.query(sql, [account_email]);
-    // console.log(email);
     return email.rowCount;
   } catch (error) {
     return error.message;
@@ -108,7 +107,6 @@ async function updatePasswordData(
       account_password,
       account_id
     ])
-    console.log(account_password, account_id);
     return data.rows[0]
   } catch (error) {
     return new Error("model error:" + error)

@@ -1,0 +1,39 @@
+<!-- HTML, title implementation using title value from controller -->
+<% if (title) { %>
+  <h1 id="managementTitle"><%= title %></h1>
+  <% } else { res.redirect('/') } %>
+
+  <%- messages() %>
+
+  <% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+  <form id="updateReview" action="/account/loggedAccount" method="post">
+    <div>ALL FIELDS ARE REQUIRED.</div>
+    <fieldset>
+    <div class="divider">
+      <label for="review_date">Review Date</label><br>
+      <input type="text" id="review_date" class="string" name="review_date" title="" value="<%= locals.review_date %>" disabled>
+    </div>
+    <div class="divider">
+      <label for="review_text">Review Text</label><br>
+      <textarea id="review_text" name="review_text" rows="4" cols="50" value="<%= locals.vehicle_data.review_text %>"><%= locals.vehicle_data.review_text %></textarea><br>
+    </div>
+    <button id="updateReview_button" type="submit" disabled>Update Review<br/>
+    <input type="hidden" name="review_id" <% if(locals.vehicle_data.review_id) { %> value="<%= locals.vehicle_data.review_id %>" <% } %>>
+    </fieldset>
+  </form>
+
+
+<script src="/js/edit-review.js"></script>
+
+
+
+
+
+

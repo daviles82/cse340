@@ -93,7 +93,6 @@ async function addInventoryToFile(req, res) {
   );
 
   if (regResult) {
-    // console.log(regResult); // Testing errors with error in query
     req.flash(
       'notice',
       `Congratulations, you added a ${inv_year} ${inv_make} ${inv_model} to the database.`

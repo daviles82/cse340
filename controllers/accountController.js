@@ -33,14 +33,15 @@ async function accountView(req, res, next) {
   const updateAccountlink = await
   res.locals.linkaccount === undefined ? '' : res.locals.linkaccount;
   const greeting = `Welcome ${res.locals.accountData.account_firstname}`
+  const reviewManagement = await utilities.userViewReviewList(res.locals.accountData.account_id);
   const header = await utilities.getHeader();
   let nav = await utilities.getNav();
-  console.log(updateAccountlink);
   res.render('./account/loggedAccount', {
     title: 'Account Management',
     greeting,
     updateAccountlink,
     header,
+    reviewManagement,
     Access,
     nav,
     errors: null,
@@ -242,7 +243,6 @@ async function updatePassword(req, res) {
     account_password,
     account_id
   } = req.body;
-  console.log(`accountController line 242 ${JSON.stringify(req.body)}`);
   // Hash the password before storing
   let hashedPassword;
   try {
@@ -289,6 +289,7 @@ async function updatePassword(req, res) {
 }
 
 
+
 module.exports = {
   buildLogin,
   buildRegister,
@@ -298,5 +299,5 @@ module.exports = {
   accountLogout,
   accountEditView,
   editAccount,
-  updatePassword
+  updatePassword,
 };
